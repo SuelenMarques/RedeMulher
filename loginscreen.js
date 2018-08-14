@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  $('.firstscreen').delay('4000').fadeOut('slow');
+  $('.loginscreen').delay('4000').fadeIn('slow')
+
+});
+$(document).ready(function() {
   $(".sign-up-button").click(signUpClick);
   $(".sign-in-button").click(signInClick);
 });
