@@ -1,9 +1,6 @@
 $(document).ready(function() {
   $('.firstscreen').delay('4000').fadeOut('slow');
-  $('.loginscreen').delay('4000').fadeIn('slow')
-
-});
-$(document).ready(function() {
+  $('.loginscreen').delay('4000').fadeIn('slow');
   $(".sign-up-button").click(signUpClick);
   $(".sign-in-button").click(signInClick);
 });
@@ -18,10 +15,10 @@ function signUpClick(event) {
 function createUser(email, password) {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(function(response) {
-     alert("Cadastro concluido com sucesso !!!\n " + email)
+     alert("Cadastro concluido com sucesso !!! Faça seu login\n " + email)
     })
     .catch(function(error) {
-      handleError(error);
+      checkError(error);
     });
 }
 
@@ -36,18 +33,18 @@ function signInUser(email, password) {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(function(response) {
       var userId = response.user.uid;
-      redirectToTasks(userId);
+      redirectToPage(userId);
     })
     .catch(function(error) {
-      handleError(error)
+      checkError(error);
     });
 }
 
-function handleError(error) {
+function checkError(error) {
   var errorMessage = error.message;
   alert(errorMessage);
 }
 
-function redirectToTasks(userId) {
+function redirectToPage(userId) {
   window.location = "index.html?id=" + userId;
 }

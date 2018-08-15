@@ -1,6 +1,4 @@
 
-
-
   var config = {
     apiKey: "AIzaSyC78bEhDFxI36OmTB-MTBTRBL7NyEJbTEs",
     authDomain: "redemulher-409a6.firebaseapp.com",
