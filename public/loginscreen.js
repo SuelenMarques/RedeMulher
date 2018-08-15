@@ -46,5 +46,5 @@ function checkError(error) {
 }
 
 function redirectToPage(userId) {
-  window.location = "index.html?id=" + userId;
+  window.location = "network.html?id=" + userId;
 }
