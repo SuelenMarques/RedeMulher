@@ -27,7 +27,6 @@ function createListItem(text, key) {
     </li>`
     );
   
-
   $(`button[data-delete-id=${key}]`).click(function() {
     $(this).parent().remove();
     database.ref('posts/'+ USER_ID + "/" + key).remove();
@@ -43,7 +42,6 @@ function createListItem(text, key) {
   });
 }
 
-
 function getMsgDB() {
   database.ref("posts/" + USER_ID).once('value')
     .then(function(snapshot) {
@@ -55,22 +53,46 @@ function getMsgDB() {
     });
 }
 
+$(document).ready(function() {
+  database.ref("users/" + USER_ID).once("value")
+  .then(function(snapshot) {
+    var userInfo = snapshot.val();
+    $(".user-name").text(userInfo.name)
+  })
 
-// $(document).ready(function() {
-//   database.ref("users/" + USER_ID).once("value")
-//   .then(function(snapshot) {
-//     var userInfo = snapshot.val();
-//     $(".user-name").text(userInfo.name)
-//   })
+  database.ref("users").once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+      createUsers(childData.name, childKey);
+    });
+  })
 
-//   database.ref("users").once("value")
-//   .then(function(snapshot) {
-//     snapshot.forEach(function(childSnapshot) {
-//       var childKey = childSnapshot.key;
-//       var childData = childSnapshot.val();
-//       createUsers(childData.name, childKey);
+  function createUsers(name, key) {
+  if (key !== USER_ID) {
+    $(".users-list").append(`
+      <li>
+        <span>${name}</span>
+        <button data-user-id="${key}">seguir</button>
+      </li>
+    `);
+  }
+
+  $(`button[data-user-id=${key}]`).click(function () {
+    database.ref('friendship/' + USER_ID).push({
+      friendId: key
+    });
+  })
+}
+});
+//   $(`button[data-user-id=${key}]`).click(function () {
+//     database.ref('friendship/' + USER_ID).push({
+//       friendId: key
 //     });
 //   })
+
+// }
 
 //     var uploader = $("#uploader").val();
 //     var uploadButton = $("#upload-button");
