@@ -1,32 +1,34 @@
 var database = firebase.database();
-var USER_ID = window.location.search.match(/\?id=(.*)/)[1];
+var USER_ID = window.location.search.match(/\?userId=(.*)/)[1];
+console.log(USER_ID);
 
 $(document).ready(function() {
+createUsersDB();
   getMsgDB();
+  getUsersDB();
+
   $(".add-message").click(function(event) {
    event.preventDefault();
- 
   var newMsg = $(".message-input").val();
   $(".message-input").val("");
-
   var msgFromDB = database.ref('posts/' + USER_ID).push({
       text: newMsg
     });
-
   createListItem(newMsg, msgFromDB.key)
-
- })
+  })
 });
 
 function createListItem(text, key) {
   $(".news-list").append(`
-    <li>
-      <button data-delete-id="${key}">Excluir </button>
-        <button data-edit-id="${key}">Editar </button>
-      <span data-text-id="${key}">${text}</span>
+    <li class="users-list-li">
+    <span data-text-id="${key}">${text}</span><br>
+     
+        <button class="editar" data-edit-id="${key}">Editar </button>
+         <button class="deletar data-delete-id="${key}">Excluir </button>
+      
     </li>`
     );
-  
+
   $(`button[data-delete-id=${key}]`).click(function() {
     $(this).parent().remove();
     database.ref('posts/'+ USER_ID + "/" + key).remove();
@@ -53,13 +55,14 @@ function getMsgDB() {
     });
 }
 
-$(document).ready(function() {
-  database.ref("users/" + USER_ID).once("value")
+function createUsersDB() {
+database.ref("users/" + USER_ID).once("value")
   .then(function(snapshot) {
     var userInfo = snapshot.val();
     $(".user-name").text(userInfo.name)
-  })
-
+  });
+}
+function getUsersDB(){
   database.ref("users").once("value")
   .then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
@@ -67,14 +70,15 @@ $(document).ready(function() {
       var childData = childSnapshot.val();
       createUsers(childData.name, childKey);
     });
-  })
+  });
+}
 
-  function createUsers(name, key) {
+function createUsers(name, key) {
   if (key !== USER_ID) {
     $(".users-list").append(`
-      <li>
+      <li class="users-list-li-u">
         <span>${name}</span>
-        <button data-user-id="${key}">seguir</button>
+        <button class="buttonUsers" data-user-id="${key}">seguir</button>
       </li>
     `);
   }
@@ -85,7 +89,7 @@ $(document).ready(function() {
     });
   })
 }
-});
+// });
 //   $(`button[data-user-id=${key}]`).click(function () {
 //     database.ref('friendship/' + USER_ID).push({
 //       friendId: key
@@ -117,4 +121,3 @@ $(document).ready(function() {
 //
 // )
 // }
-

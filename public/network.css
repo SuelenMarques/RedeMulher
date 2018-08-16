@@ -1,6 +1,72 @@
+body {
+  	background-color: #e3d1d1;
+}
+
 #uploader{
-  -webkit-appearance: none;
-   appearance: none;
-   width: 50%;
-   margin-bottom: 10px;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 50%;
+	margin-bottom: 10px;
+}
+
+.navbar{
+	margin: 30px 15px;
+	text-align: center;
+}
+
+.add-message{
+	background-color: #4CAF50;
+	padding: 10px 10px;
+	color: #fff;
+	border: 1px solid;
+	cursor: pointer;
+}
+
+.editar{
+	background-color: #4CAF50;
+	padding: 10px 10px;
+	color: #fff;
+	border: 1px solid;
+	cursor: pointer;
+	margin: 10px 5px;	
+}
+
+.deletar{
+	background-color: red;
+	padding: 10px 10px;
+	color: #fff;
+	border: 1px solid;
+	cursor: pointer;	
+}
+
+.users-lis{
+	margin: 20px 0px;
+}
+
+.users-list-li{
+	list-style: circle;
+	margin: 20px 0px;
+	border-bottom: 1px solid #ccc;
+	text-align: justify;
+}
+
+.users-list{
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.users-list-li-u{
+	margin: 10px 15px;
+	font-weight: bold;
+	text-align: right;
+    list-style: none;
+}
+
+.buttonUsers{
+	    background-color: #2196F3;
+    padding: 10px 10px;
+    color: #fff;
+    border: 1px solid;
+    cursor: pointer;
+    margin: 10px 5px 10px 25px;	
 }

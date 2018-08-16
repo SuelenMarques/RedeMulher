@@ -12,7 +12,7 @@ body {
 }
 
 .firstscreen {
-  background-image: url(img/hightshoes.jpg);
+  background-image: url(img/hightshoes.png);
   background-position: center;
   background-size: 0 bottom;
   background-repeat: no-repeat;
@@ -42,6 +42,11 @@ h1 {
   color: #97110E;
 }
 
+.loginscreen input{
+  border: 1px solid #ccc;
+  padding: 5px 20px;
+}
+
 .emailSenha {
   display: flex;
   flex-direction: row;
@@ -55,8 +60,9 @@ h1 {
 
 .button {
   background-color: #97110E;
-  width: 200px;
-  margin: auto;
+  margin: 20px 55px;
   font-size: 20px;
   color: white;
+  text-align:  center;
+  padding: 5px 30px;
 }

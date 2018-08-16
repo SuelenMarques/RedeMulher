@@ -1,3 +1,5 @@
+var database = firebase.database();
+
 $(document).ready(function() {
   $('.firstscreen').delay('4000').fadeOut('slow');
   $('.loginscreen').delay('4000').fadeIn('slow');
@@ -7,32 +9,35 @@ $(document).ready(function() {
 
 function signUpClick(event) {
   event.preventDefault();
+  var name = $(".sign-name").val();
   var email = $(".sign-email").val();
   var password = $(".sign-password").val();
-  createUser(email, password);
-}
 
-function createUser(email, password) {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(function(response) {
-     alert("Cadastro concluido com sucesso !!! Faça seu login\n " + email)
+      alert("Cadastro concluido com sucesso !!! Faça seu login\n " + name);
+
+
     })
     .catch(function(error) {
       checkError(error);
     });
+
 }
 
 function signInClick(event) {
   event.preventDefault();
+  var name = $(".sign-name").val();
   var email = $(".sign-email").val();
   var password = $(".sign-password").val();
-  signInUser(email, password);
-}
 
-function signInUser(email, password) {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(function(response) {
       var userId = response.user.uid;
+      database.ref("users/" + userId).set({
+       name: name,
+       email: email
+     });
       redirectToPage(userId);
     })
     .catch(function(error) {
@@ -46,5 +51,5 @@ function checkError(error) {
 }
 
 function redirectToPage(userId) {
-  window.location = "network.html?id=" + userId;
+  window.location = "network.html?userId=" + userId;
 }
