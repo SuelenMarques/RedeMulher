@@ -1,5 +1,5 @@
 body {
-  	background-color: #e3d1d1;
+  background-color: #e3d1d1;
 }
 
 #uploader{
@@ -24,24 +24,36 @@ body {
 
 .editar{
 	background-color: #4CAF50;
-	padding: 10px 10px;
-	color: #fff;
-	border: 1px solid;
-	cursor: pointer;
-	margin: 10px 5px;	
+    padding: 3px 3px;
+    color: #fff;
+    border: 1px solid;
+    cursor: pointer;
+    margin: 8px 3px 5px 10px;	
 }
 
 .deletar{
 	background-color: red;
-	padding: 10px 10px;
-	color: #fff;
-	border: 1px solid;
-	cursor: pointer;	
+    padding: 3px 3px;
+    color: #fff;
+    border: 1px solid;
+    cursor: pointer;
+    margin: 8px 3px 5px 10px;
+}
+
+.gostar{
+	background-color: #2196F3;
+    padding: 3px 3px;
+    color: #fff;
+    border: 1px solid;
+    cursor: pointer;
+    margin: 8px 3px 5px 10px;
 }
 
 .users-lis{
 	margin: 20px 0px;
 }
+
+li {list-style-type:none;}
 
 .users-list-li{
 	list-style: circle;
@@ -63,7 +75,7 @@ body {
 }
 
 .buttonUsers{
-	    background-color: #2196F3;
+	background-color: #2196F3;
     padding: 10px 10px;
     color: #fff;
     border: 1px solid;
